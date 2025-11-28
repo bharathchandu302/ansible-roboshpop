@@ -1,5 +1,5 @@
 - name: setup mangodb server
-  hosts: mongodb
+  hosts: local
   become: yes
   tasks:
   - name: copy mongodb repo
@@ -17,7 +17,7 @@
       path: /etc/mongod.conf
       regexp: '127.0.0.1'
       replace: '0.0.0.0'
-      
+
   - name: satrt and enable service
     ansible.builtin.service:
       name: mongodb
