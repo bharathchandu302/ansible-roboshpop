@@ -18,13 +18,17 @@
       state: started
       enabled: yes
 
-  - name: create and provide permissions to server
-    community.rabbitmq.rabbitmq_user:
-    user: roboShop
+  - name: create rabbitmq user
+  community.rabbitmq.rabbitmq_user:
+    user: roboshop
     password: roboshop123
-    permissions:
-      - vhost: /
-        configure_priv: .*
-        read_priv: .*
-        write_priv: .*
-    state: present  
+    state: present
+
+- name: set permissions for rabbitmq user
+  community.rabbitmq.rabbitmq_user:
+    user: roboshop
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
